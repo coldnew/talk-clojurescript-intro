@@ -1,0 +1,11 @@
+[0mCompiling "resources/public/js/compiled/hello_devcards_devcards.js" from ["src"]...[0m
+[32mSuccessfully compiled "resources/public/js/compiled/hello_devcards_devcards.js" in 0.432 seconds.[0m
+notifying browser that file changed:  resources/public/js/compiled/devcards_out/goog/deps.js
+notifying browser that file changed:  resources/public/js/compiled/devcards_out/cljs_deps.js
+notifying browser that file changed:  out/hello_devcards/core.js
+[0mCompiling "resources/public/js/compiled/hello_devcards_devcards.js" from ["src"]...[0m
+[32mSuccessfully compiled "resources/public/js/compiled/hello_devcards_devcards.js" in 0.381 seconds.[0m
+notifying browser that file changed:  out/hello_devcards/core.js
+[0mCompiling "resources/public/js/compiled/hello_devcards_devcards.js" from ["src"]...[0m
+[32mSuccessfully compiled "resources/public/js/compiled/hello_devcards_devcards.js" in 0.379 seconds.[0m
+notifying browser that file changed:  out/hello_devcards/core.js

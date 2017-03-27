@@ -1,0 +1,276 @@
+#+TITLE: ClojureScript Intro
+#+DATE: <2017-03-27 Mon 09:40>
+#+AUTHOR: coldnew
+#+EMAIL: coldnew.tw@gmail.com
+#+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline
+#+OPTIONS: author:t c:nil creator:comment d:(not "LOGBOOK") date:t
+#+OPTIONS: e:t email:nil f:t inline:t num:nil p:nil pri:nil stat:t
+#+OPTIONS: tags:t tasks:t tex:t timestamp:t toc:nil todo:t |:t
+#+DESCRIPTION: Simple intro for ClojureScript
+#+DESCRIPTION:
+#+EXCLUDE_TAGS: noexport
+#+KEYWORDS:
+#+LANGUAGE: en
+#+SELECT_TAGS: export
+
+#+COMPANY: clojure.tw
+#+WWW: https://coldnew.github.io
+#+GITHUB: http://github.com/coldnew
+#+TWITTER: coldnew
+
+#+FAVICON: images/cljs-icon.png
+#+ICON: images/cljs-icon.png
+
+* ClojureScript ?
+  :PROPERTIES:
+  :SLIDE:    segue dark quote
+  :ASIDE:    right bottom
+  :ARTICLE:  flexbox vleft auto-fadein
+  :END:
+
+** Why ClojureScript ?
+
+   - A =dialect= of [[https://clojure.org/][Clojure]]
+   - Can compile to javascript (the feature ?)
+
+     [[file:images/c2.png]]
+
+** Difference from Clojure
+
+   - No STM (also n refs or agents)
+   - Atoms work as in Clojure, but are single-threaded
+   - No pre- and post-conditions on functions
+   - ns macro has a few differences
+   - Host language interoperability is slightly different
+
+** What ClojureScript Looks like?
+
+   #+ATTR_HTML: :width 90%
+   file:images/jc.png
+
+** What ClojureScript Looks like?
+
+   #+ATTR_HTML: :width 90%
+   [[file:images/m2.png]]
+
+** What ClojureScript Looks like?
+   
+   - cljs
+
+     #+BEGIN_SRC clojure
+       (js/alert "Hello, world!")      ; => nil
+
+       (.log js/console "Log message") ; => nil
+
+       (.-href (.-location js/document)) ; => http://localhost/
+     #+END_SRC
+
+   - js
+
+     #+BEGIN_SRC js
+     alert("Hello, World!")
+
+     console.log("Log message")
+
+     document.location.href
+     #+END_SRC
+
+** What ClojureScript Looks like?
+   
+   - cljs example
+
+     #+BEGIN_SRC clojure
+       (js/alert "Hello, world!")      ; => nil
+
+       (.log js/console "Log message") ; => nil
+
+       (.-href (.-location js/document)) ; => http://localhost/
+     #+END_SRC
+     
+   - Javascript objects live in the =js= namespace 
+
+   - Calling methods works as in java: =(.method instance args)=
+
+   - Accessing fields of instances uses =(.-fieldname instance)=
+
+** [[http://cljs.info/cheatsheet/][ClojureScript Cheatsheet]]
+
+   #+ATTR_HTML: :width 80%
+   [[file:images/c1.png]]
+
+* Start your first ClojureScript Project
+  :PROPERTIES:
+  :SLIDE:    segue dark quote
+  :ASIDE:    right bottom
+  :ARTICLE:  flexbox vleft auto-fadein
+  :END:
+
+** Editors
+
+   - [[http://nightcoders.net/][Nightcoders.net]]
+
+   - [[https://cursive-ide.com/][Cirsive IDE]]
+
+   - [[https://lighttable.com/][LightTable]]
+
+   - Emacs
+
+   - Vim
+
+** Templates
+
+  It's recommand to use following template to getting start
+
+  - [[https://github.com/bhauman/devcards][bhauman/devcards]] :: Devcards aims to provide a visual REPL experience for ClojureScript
+
+
+  - [[https://github.com/bhauman/figwheel-template][bhauman/figwheel-template]] :: A Leinigen template for figwheel
+
+
+  - [[https://github.com/martinklepsch/tenzing][martinklepsch/tenzing]] :: Clojurescript application template using Boot
+
+
+  - [[https://github.com/plexus/chestnut][plexus/chestnut]] :: Application template for ClojureScript/Om with live reloading.
+
+** Leinigen project for ClojureScript
+
+   [[https://github.com/emezeske/lein-cljsbuild][lein-cljsbuild]] is [[https://leiningen.org/][Leinigen]] pluging for cljs compiler
+
+   #+ATTR_HTML: :width 80%
+   [[file:images/c3.png]]
+
+** Boot project for ClojureScript
+
+   For [[http://boot-clj.com/][boot]], we use [[https://github.com/boot-clj/boot-cljs][boot-cljs]] for cljs compiler setting
+
+   #+ATTR_HTML: :width 70%
+   [[file:images/jd.png]]
+
+** How ClojureScript Compile to Javascript ?
+   
+   - Use [[https://developers.google.com/closure/compiler/][Google Closure Compiler]] as backend
+     
+   - Can minified generated javascript to =4 level=
+
+     + none, simple, whitespace, advanced
+
+   #+ATTR_HTML: :width 70%
+   [[file:images/google-closure-compiler.svg]]
+
+** A example on optimize level
+
+   #+BEGIN_SRC clojure
+     (ns example.app)
+
+     (defn fn1 []
+       (println "FN1!!"))
+
+     (defn ^:export fn2 []
+       (println "FN2!!"))
+   #+END_SRC
+
+** Different optimize level: simple
+
+   #+ATTR_HTML: :width 80%
+   [[file:images/simple.png]]   
+
+** Different optimize level: advanced
+
+   #+ATTR_HTML: :width 80%
+   [[file:images/adv.png]] 
+
+* Angular.js vs. React.js vs. Vue.js
+  :PROPERTIES:
+  :SLIDE:    segue dark quote
+  :ASIDE:    right bottom
+  :ARTICLE:  flexbox vleft auto-fadein
+  :END:
+
+** Does ClojureScript supported Angular.js/React.js/Vue.js ?
+
+   - Yes.... but [[https://facebook.github.io/react/][React.js]] has better support
+
+   - ClojureScript has three wrapper for [[https://facebook.github.io/react/][React.js]]
+
+     - [[https://github.com/omcljs/om][omcljs/om]] :: ClojureScript interface to Facebook's React
+
+     - [[https://reagent-project.github.io/][Reagent]] :: Minimalistic React for ClojureScript
+
+     - [[https://github.com/tonsky/rum][tonsky/rum]] :: Simple, decomplected, isomorphic HTML UI library for Clojure and ClojureScript
+
+** Wchich is better?
+
+   - Well, It depends 
+
+   - It's more recommand to getting start from [[https://reagent-project.github.io/][Reagent]] .
+
+** Does ClojureScript supported React-Native ?
+
+   - Yes, there's also an  [[http://cljsrn.org/][Official Site]] for ClojureSctipt + React-Native
+
+
+   - Please see [[https://www.youtube.com/embed/6IYm34nDL64?list=PLetHPRQvX4a_jQjvn54Q-d1WYZ52nDfnT][Native mobile apps with CLojureScript]] in ClojuTRE 2016 first!!!
+
+* Node.js Support
+  :PROPERTIES:
+  :SLIDE:    segue dark quote
+  :ASIDE:    right bottom
+  :ARTICLE:  flexbox vleft auto-fadein
+  :END:
+
+** How to build ClojureScript for Node.js target ?
+
+   Just modify you =:compiler= setting and add =:target :nodejs=
+   
+   #+ATTR_HTML: :width 80%
+   [[file:images/nn.png]]
+
+** ClojureScript for Node.js use Node.js module
+
+   #+ATTR_HTML: :width 70%
+   [[file:images/e1.png]]
+   
+
+* Others
+  :PROPERTIES:
+  :SLIDE:    segue dark quote
+  :ASIDE:    right bottom
+  :ARTICLE:  flexbox vleft auto-fadein
+  :END:
+
+** clj->js & js->clj
+   
+   In ClojureScript, we can use =clj->js= and =js->clj= to cnovert data from js/cljs
+
+   #+ATTR_HTML: :width 80%
+   [[file:images/jjs.png]]
+
+
+** Chrome tools
+
+   - [[https://github.com/binaryage/dirac][binaryage/dirac]] :: A Chrome DevTools fork for ClojureScript developers
+
+   - [[https://github.com/binaryage/cljs-devtools][binaryage/cljs-devtools]] :: A collection of Chrome DevTools enhancements for ClojureScript developers
+
+** lein-doo
+
+   [[https://github.com/bensu/doo][lein-doo]] is a library and lein plugin to run cljs.test on different js environments.
+
+   #+ATTR_HTML: :width 80%
+   [[file:images/doo.png]]
+
+* Idea                                                             :noexport:
+
+** cljsjs packages
+   
+   - [[https://github.com/cljsjs/packages][cljsjs/packages]] :: Javascript libraries packaged up with Google Closure externs
+
+   - Use [[https://github.com/cljsjs/packages][cljsjs/packages]] for project with =:advanced= compilation options
+
+* References
+
+  - [[https://github.com/timgilbert/cljs-intro-slides][timgilbert/cljs-intro-slides: A slide deck for an intro to ClojureScript talk I'm giving]]
+
+  - [[http://jared314.github.io/clojurescript-for-javascript-devs/#2][An introduction to ClojureScript for Javascript developers]]
+
+  - [[http://slides.com/valwaeselynck/clojurescript-parisjs#/][ClojureScript Paris.js by Val Waeselynck]]

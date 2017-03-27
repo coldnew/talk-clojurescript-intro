@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<!-- 2017-03-27 Mon 19:23 -->
+<meta  charset="utf-8" />
+<meta  htto-equiv="X-UA-Compatible" content="chrome=1" />
+<meta  name="generator" content="Org-mode with org-ioslide" />
+<meta  name="author" content="coldnew" />
+<meta  name="description" content="Simple intro for ClojureScript"
+ />
+
+<!--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">-->
+<!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--This one seems to work all the time, but really small on ipad-->
+<!--<meta name="viewport" content="initial-scale=0.4">-->
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<link rel="stylesheet" media="all" href="theme/css/default.css" />
+<link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="theme/css/phone.css" />
+<link rel="stylesheet" media="all" href="theme/css/small-icon.css" />
+<base target="_blank"> <!-- This amazingness opens all links in a new tab. -->
+<script data-main="js/slides" src="js/require-1.0.8.min.js"></script>
+
+   <script src="js/jquery-1.7.1.min.js" type="text/javascript"></script>
+
+<script src="js/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML,local/local" type="text/javascript"></script>
+</head>
+<body style="opacity: 0">
+<slides class="layout-widescreen">
+<slide class="title-slide segue nobackground">
+       <aside class="gdbar"><img src="images/cljs-icon.png"></aside>
+       <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+       <hgroup class="auto-fadein">
+         <h1 data-config-title><!-- populated from slide_config.json --></h1>
+         <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
+         <p data-config-presenter><!-- populated from slide_config.json --></p>
+       </hgroup>
+    </slide>
+  
+<slide id="sec-" class=" segue dark quote nobackground" style="background-image: url(nil)">
+<aside class="gdbar right bottom"><img src="images/cljs-icon.png"></aside><hgroup class="">
+       <h2 class=" "><div id="outline-container-org2bf8edc" class="outline-2">
+<h2 id="org2bf8edc">ClojureScript ?</h2>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="flexbox vleft auto-fadein" id="text-">
+
+
+</article>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orga2799b0" class="outline-3">
+<h3 id="orga2799b0">Why ClojureScript ?</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<ul>
+<li>A <code>dialect</code> of <a href="https://clojure.org/">Clojure</a></li>
+<li><p>
+Can compile to javascript (the feature ?)
+</p>
+
+
+<div class="figure">
+<p><img src="images/c2.png" alt="c2.png" />
+</p>
+</div></li>
+</ul>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgaaf2866" class="outline-3">
+<h3 id="orgaaf2866">Difference from Clojure</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<ul>
+<li>No STM (also n refs or agents)</li>
+<li>Atoms work as in Clojure, but are single-threaded</li>
+<li>No pre- and post-conditions on functions</li>
+<li>ns macro has a few differences</li>
+<li>Host language interoperability is slightly different</li>
+</ul>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-org26f11fd" class="outline-3">
+<h3 id="org26f11fd">What ClojureScript Looks like?</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+
+<div class="figure">
+<p><img src="images/jc.png" alt="jc.png" width="90%" />
+</p>
+</div>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-org8f7a52f" class="outline-3">
+<h3 id="org8f7a52f">What ClojureScript Looks like?</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+
+<div class="figure">
+<p><img src="images/m2.png" alt="m2.png" width="90%" />
+</p>
+</div>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-org81e61d7" class="outline-3">
+<h3 id="org81e61d7">What ClojureScript Looks like?</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<ul>
+<li><p>
+cljs
+</p>
+
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="clojure">
+(js/alert "Hello, world!")      ; =&gt; nil
+
+(.log js/console "Log message") ; =&gt; nil
+
+(.-href (.-location js/document)) ; =&gt; http://localhost/
+</pre>
+
+</div></li>
+
+<li><p>
+js
+</p>
+
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="js">
+alert("Hello, World!")
+
+console.log("Log message")
+
+document.location.href
+</pre>
+
+</div></li>
+</ul>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orga86b5a9" class="outline-3">
+<h3 id="orga86b5a9">What ClojureScript Looks like?</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<ul>
+<li><p>
+cljs example
+</p>
+
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="clojure">
+(js/alert "Hello, world!")      ; =&gt; nil
+
+(.log js/console "Log message") ; =&gt; nil
+
+(.-href (.-location js/document)) ; =&gt; http://localhost/
+</pre>
+
+</div></li>
+
+<li>Javascript objects live in the <code>js</code> namespace</li>
+
+<li>Calling methods works as in java: <code>(.method instance args)</code></li>
+
+<li>Accessing fields of instances uses <code>(.-fieldname instance)</code></li>
+</ul>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-org21ecc66" class="outline-3">
+<h3 id="org21ecc66"><a href="http://cljs.info/cheatsheet/">ClojureScript Cheatsheet</a></h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+
+<div class="figure">
+<p><img src="images/c1.png" alt="c1.png" width="80%" />
+</p>
+</div>
+
+
+</article>
+
+</slide>
+
+</slide>
+
+</slide>
+<slide id="sec-" class=" segue dark quote nobackground" style="background-image: url(nil)">
+<aside class="gdbar right bottom"><img src="images/cljs-icon.png"></aside><hgroup class="">
+       <h2 class=" "><div id="outline-container-orgb790c68" class="outline-2">
+<h2 id="orgb790c68">Start your first ClojureScript Project</h2>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="flexbox vleft auto-fadein" id="text-">
+
+
+</article>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgcd171e2" class="outline-3">
+<h3 id="orgcd171e2">Editors</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<ul>
+<li><a href="http://nightcoders.net/">Nightcoders.net</a></li>
+
+<li><a href="https://cursive-ide.com/">Cirsive IDE</a></li>
+
+<li><a href="https://lighttable.com/">LightTable</a></li>
+
+<li>Emacs</li>
+
+<li>Vim</li>
+</ul>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgce76e35" class="outline-3">
+<h3 id="orgce76e35">Templates</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<p>
+It's recommand to use following template to getting start
+</p>
+
+<dl>
+<dt><a href="https://github.com/bhauman/devcards">bhauman/devcards</a></dt><dd>Devcards aims to provide a visual REPL experience for ClojureScript</dd>
+</dl>
+
+
+<dl>
+<dt><a href="https://github.com/bhauman/figwheel-template">bhauman/figwheel-template</a></dt><dd>A Leinigen template for figwheel</dd>
+</dl>
+
+
+<dl>
+<dt><a href="https://github.com/martinklepsch/tenzing">martinklepsch/tenzing</a></dt><dd>Clojurescript application template using Boot</dd>
+</dl>
+
+
+<dl>
+<dt><a href="https://github.com/plexus/chestnut">plexus/chestnut</a></dt><dd>Application template for ClojureScript/Om with live reloading.</dd>
+</dl>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgdf17380" class="outline-3">
+<h3 id="orgdf17380">Leinigen project for ClojureScript</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<p>
+<a href="https://github.com/emezeske/lein-cljsbuild">lein-cljsbuild</a> is <a href="https://leiningen.org/">Leinigen</a> pluging for cljs compiler
+</p>
+
+
+<div class="figure">
+<p><img src="images/c3.png" alt="c3.png" width="80%" />
+</p>
+</div>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-org70042d6" class="outline-3">
+<h3 id="org70042d6">Boot project for ClojureScript</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<p>
+For <a href="http://boot-clj.com/">boot</a>, we use <a href="https://github.com/boot-clj/boot-cljs">boot-cljs</a> for cljs compiler setting
+</p>
+
+
+<div class="figure">
+<p><img src="images/jd.png" alt="jd.png" width="70%" />
+</p>
+</div>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orga3244f6" class="outline-3">
+<h3 id="orga3244f6">How ClojureScript Compile to Javascript ?</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<ul>
+<li>Use <a href="https://developers.google.com/closure/compiler/">Google Closure Compiler</a> as backend</li>
+
+<li>Can minified generated javascript to <code>4 level</code>
+
+<ul>
+<li>none, simple, whitespace, advanced</li>
+</ul></li>
+</ul>
+
+
+<div class="figure">
+<p><object type="image/svg+xml" data="images/google-closure-compiler.svg" class="org-svg" width="70%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgaa3820c" class="outline-3">
+<h3 id="orgaa3820c">A example on optimize level</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="clojure">
+(ns example.app)
+
+(defn fn1 []
+  (println "FN1!!"))
+
+(defn ^:export fn2 []
+  (println "FN2!!"))
+</pre>
+
+</div>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-org223e64f" class="outline-3">
+<h3 id="org223e64f">Different optimize level: simple</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+
+<div class="figure">
+<p><img src="images/simple.png" alt="simple.png" width="80%" />   
+</p>
+</div>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orge07afa3" class="outline-3">
+<h3 id="orge07afa3">Different optimize level: advanced</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+
+<div class="figure">
+<p><img src="images/adv.png" alt="adv.png" width="80%" /> 
+</p>
+</div>
+
+
+</article>
+
+</slide>
+
+</slide>
+
+</slide>
+<slide id="sec-" class=" segue dark quote nobackground" style="background-image: url(nil)">
+<aside class="gdbar right bottom"><img src="images/cljs-icon.png"></aside><hgroup class="">
+       <h2 class=" "><div id="outline-container-org8ce14a1" class="outline-2">
+<h2 id="org8ce14a1">Angular.js vs. React.js vs. Vue.js</h2>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="flexbox vleft auto-fadein" id="text-">
+
+
+</article>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-org3329e7d" class="outline-3">
+<h3 id="org3329e7d">Does ClojureScript supported Angular.js/React.js/Vue.js ?</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<ul>
+<li>Yes&#x2026;. but <a href="https://facebook.github.io/react/">React.js</a> has better support</li>
+
+<li>ClojureScript has three wrapper for <a href="https://facebook.github.io/react/">React.js</a>
+
+<dl>
+<dt><a href="https://github.com/omcljs/om">omcljs/om</a></dt><dd>ClojureScript interface to Facebook's React</dd>
+
+<dt><a href="https://reagent-project.github.io/">Reagent</a></dt><dd>Minimalistic React for ClojureScript</dd>
+
+<dt><a href="https://github.com/tonsky/rum">tonsky/rum</a></dt><dd>Simple, decomplected, isomorphic HTML UI library for Clojure and ClojureScript</dd>
+</dl></li>
+</ul>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgeaf1632" class="outline-3">
+<h3 id="orgeaf1632">Wchich is better?</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<ul>
+<li>Well, It depends</li>
+
+<li>It's more recommand to getting start from <a href="https://reagent-project.github.io/">Reagent</a> .</li>
+</ul>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orga701b3a" class="outline-3">
+<h3 id="orga701b3a">Does ClojureScript supported React-Native ?</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<ul>
+<li>Yes, there's also an  <a href="http://cljsrn.org/">Official Site</a> for ClojureSctipt + React-Native</li>
+</ul>
+
+
+<ul>
+<li>Please see <a href="https://www.youtube.com/embed/6IYm34nDL64?list=PLetHPRQvX4a_jQjvn54Q-d1WYZ52nDfnT">Native mobile apps with CLojureScript</a> in ClojuTRE 2016 first!!!</li>
+</ul>
+
+
+</article>
+
+</slide>
+
+</slide>
+
+</slide>
+<slide id="sec-" class=" segue dark quote nobackground" style="background-image: url(nil)">
+<aside class="gdbar right bottom"><img src="images/cljs-icon.png"></aside><hgroup class="">
+       <h2 class=" "><div id="outline-container-org5f7de2a" class="outline-2">
+<h2 id="org5f7de2a">Node.js Support</h2>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="flexbox vleft auto-fadein" id="text-">
+
+
+</article>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orge2e6b32" class="outline-3">
+<h3 id="orge2e6b32">How to build ClojureScript for Node.js target ?</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<p>
+Just modify you <code>:compiler</code> setting and add <code>:target :nodejs</code>
+</p>
+
+
+<div class="figure">
+<p><img src="images/nn.png" alt="nn.png" width="80%" />
+</p>
+</div>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-org5680a07" class="outline-3">
+<h3 id="org5680a07">ClojureScript for Node.js use Node.js module</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+
+<div class="figure">
+<p><img src="images/e1.png" alt="e1.png" width="70%" />
+</p>
+</div>
+
+
+</article>
+
+</slide>
+
+</slide>
+
+
+</slide>
+<slide id="sec-" class=" segue dark quote nobackground" style="background-image: url(nil)">
+<aside class="gdbar right bottom"><img src="images/cljs-icon.png"></aside><hgroup class="">
+       <h2 class=" "><div id="outline-container-org236f12b" class="outline-2">
+<h2 id="org236f12b">Others</h2>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="flexbox vleft auto-fadein" id="text-">
+
+
+</article>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgb788e79" class="outline-3">
+<h3 id="orgb788e79">clj-&gt;js &amp; js-&gt;clj</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<p>
+In ClojureScript, we can use <code>clj-&gt;js</code> and <code>js-&gt;clj</code> to cnovert data from js/cljs
+</p>
+
+
+<div class="figure">
+<p><img src="images/jjs.png" alt="jjs.png" width="80%" />
+</p>
+</div>
+
+
+</article>
+
+</slide>
+
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgd71bbfe" class="outline-3">
+<h3 id="orgd71bbfe">Chrome tools</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<dl>
+<dt><a href="https://github.com/binaryage/dirac">binaryage/dirac</a></dt><dd>A Chrome DevTools fork for ClojureScript developers</dd>
+
+<dt><a href="https://github.com/binaryage/cljs-devtools">binaryage/cljs-devtools</a></dt><dd>A collection of Chrome DevTools enhancements for ClojureScript developers</dd>
+</dl>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgc35413d" class="outline-3">
+<h3 id="orgc35413d">lein-doo</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<p>
+<a href="https://github.com/bensu/doo">lein-doo</a> is a library and lein plugin to run cljs.test on different js environments.
+</p>
+
+
+<div class="figure">
+<p><img src="images/doo.png" alt="doo.png" width="80%" />
+</p>
+</div>
+
+
+</article>
+
+</slide>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-org9d03d29" class="outline-2">
+<h2 id="org9d03d29">References</h2>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<ul>
+<li><a href="https://github.com/timgilbert/cljs-intro-slides">timgilbert/cljs-intro-slides: A slide deck for an intro to ClojureScript talk I'm giving</a></li>
+
+<li><a href="http://jared314.github.io/clojurescript-for-javascript-devs/#2">An introduction to ClojureScript for Javascript developers</a></li>
+
+<li><a href="http://slides.com/valwaeselynck/clojurescript-parisjs#/">ClojureScript Paris.js by Val Waeselynck</a></li>
+</ul>
+
+
+</article>
+
+</slide>
+<slide class="backdrop"></slide>
+</slides> 
+<!--[if IE]>
+  <script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+  <script>CFInstall.check({mode: 'overlay'});</script>
+<![endif]-->
+</body> 
+
+</html>
